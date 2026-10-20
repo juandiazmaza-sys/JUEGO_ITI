@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Math Battle Web</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-board">
+    <!-- JUGADOR 2: orientado hacia el lado opuesto -->
+    <section class="player-zone player-two" aria-label="Zona del estudiante 2">
+      <div class="player-content player-content-inverted">
+        <p id="status2" class="player-status">Esperando la batalla...</p>
+
+        <div class="operation-block">
+          <span class="operation-label">Operación</span>
+          <div id="operation2" class="operation">7 × 8 = ?</div>
+        </div>
+
+        <div id="answers2" class="answers-grid" aria-label="Respuestas del estudiante 2"></div>
+
+        <header class="player-header">
+          <div class="player-name">
+            <span class="player-badge">J2</span>
+            <span>ESTUDIANTE 2</span>
+          </div>
+          <div class="score"><span>⭐</span><span id="score2">0</span></div>
+        </header>
+      </div>
+    </section>
+
+    <!-- PANEL CENTRAL -->
+    <section class="center-panel" aria-label="Información de la ronda">
+      <div class="center-row center-row-inverted">
+        <button class="settings-button settings-blue" data-open-settings>⚙ AJUSTES</button>
+        <div class="timer-chip timer-blue">TIEMPO <strong id="time2">10</strong></div>
+        <div class="round-text round-blue">RONDA <strong id="round2">0 / 10</strong></div>
+      </div>
+
+      <div class="center-divider"></div>
+      <p id="centerMessage" class="center-message">Configura la partida para comenzar</p>
+      <div class="center-divider"></div>
+
+      <div class="center-row">
+        <div class="round-text round-pink">RONDA <strong id="round1">0 / 10</strong></div>
+        <div class="timer-chip timer-pink">TIEMPO <strong id="time1">10</strong></div>
+        <button class="settings-button settings-gold" data-open-settings>⚙ AJUSTES</button>
+      </div>
+    </section>
+
+    <!-- JUGADOR 1 -->
+    <section class="player-zone player-one" aria-label="Zona del estudiante 1">
+      <div class="player-content">
+        <header class="player-header">
+          <div class="player-name">
+            <span class="player-badge">J1</span>
+            <span>ESTUDIANTE 1</span>
+          </div>
+          <div class="score"><span>⭐</span><span id="score1">0</span></div>
+        </header>
+
+        <div class="operation-block">
+          <span class="operation-label">Operación</span>
+          <div id="operation1" class="operation">7 × 8 = ?</div>
+        </div>
+
+        <div id="answers1" class="answers-grid" aria-label="Respuestas del estudiante 1"></div>
+        <p id="status1" class="player-status">Esperando la batalla...</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONFIGURACIÓN -->
+  <dialog id="setupDialog" class="game-dialog">
+    <form id="setupForm" class="dialog-card">
+      <div class="dialog-icon">⚡</div>
+      <h1>Math Battle</h1>
+      <p>¿Cuántas preguntas tendrá la partida?</p>
+
+      <fieldset class="question-options">
+        <legend class="sr-only">Cantidad de preguntas</legend>
+        <label><input type="radio" name="questions" value="5"><span>5</span></label>
+        <label><input type="radio" name="questions" value="10" checked><span>10</span></label>
+        <label><input type="radio" name="questions" value="15"><span>15</span></label>
+        <label><input type="radio" name="questions" value="20"><span>20</span></label>
+      </fieldset>
+
+      <p class="scoring-note">Responde rápido: puedes ganar hasta 100 puntos por pregunta.</p>
+
+      <div class="dialog-actions">
+        <button type="button" id="cancelSetup" class="button button-secondary">CANCELAR</button>
+        <button type="submit" class="button button-primary">¡COMENZAR!</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- RESULTADO FINAL -->
+  <dialog id="finishDialog" class="game-dialog">
+    <div class="dialog-card">
+      <div class="dialog-icon">🏆</div>
+      <h2 id="winnerText">Fin de la partida</h2>
+      <p id="finalScore"></p>
+      <button id="playAgain" class="button button-cyan">JUGAR DE NUEVO</button>
+    </div>
+  </dialog>
+
+  <script src="game.js"></script>
+</body>
+</html>

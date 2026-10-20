@@ -1,0 +1,18 @@
+MATH BATTLE WEB - DISEÑO OSCURO
+
+Archivos:
+- index.html: estructura semántica del juego.
+- styles.css: diseño oscuro, zonas opuestas y adaptación a pantalla.
+- game.js: operaciones, temporizador, intentos, preguntas y puntajes.
+
+Cómo ejecutar:
+1. Descomprime el ZIP.
+2. Conserva los tres archivos principales en la misma carpeta.
+3. Abre index.html en Chrome, Edge o Firefox.
+
+Reglas:
+- Se pueden seleccionar 5, 10, 15 o 20 preguntas.
+- Cada estudiante tiene un intento por pregunta.
+- El primer estudiante que acierte cierra la ronda.
+- Puntaje: 10 puntos por cada segundo restante, hasta 100 puntos.
+- El Estudiante 2 está girado 180 grados para jugar desde el otro lado.
