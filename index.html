@@ -1,114 +1,462 @@
 <!doctype html>
-<html lang="es" class="h-full">
+<html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, user-scalable=no"
+  >
+
   <title>Math Battle Web</title>
 
+  <!-- Fuentes de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Conexión con el archivo CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <main class="game-board">
-    <!-- JUGADOR 2: orientado hacia el lado opuesto -->
-    <section class="player-zone player-two" aria-label="Zona del estudiante 2">
-      <div class="player-content player-content-inverted">
-        <p id="status2" class="player-status">Esperando la batalla...</p>
 
-        <div class="operation-block">
-          <span class="operation-label">Operación</span>
-          <div id="operation2" class="operation">7 × 8 = ?</div>
+  <main id="game" class="game-board">
+
+    <!-- ===================================== -->
+    <!-- ZONA DEL ESTUDIANTE 2 -->
+    <!-- ===================================== -->
+
+    <section
+      class="player-zone player-two"
+      aria-label="Zona del estudiante 2"
+    >
+
+      <div class="player-content inverted">
+
+        <p id="status2" class="status">
+          Esperando...
+        </p>
+
+        <div class="operation-box">
+
+          <small>OPERACIÓN</small>
+
+          <div id="operation2" class="operation">
+            ? + ? = ?
+          </div>
+
         </div>
 
-        <div id="answers2" class="answers-grid" aria-label="Respuestas del estudiante 2"></div>
+        <div
+          id="answers2"
+          class="answers"
+          aria-label="Respuestas del estudiante 2"
+        ></div>
 
         <header class="player-header">
-          <div class="player-name">
-            <span class="player-badge">J2</span>
-            <span>ESTUDIANTE 2</span>
-          </div>
-          <div class="score"><span>⭐</span><span id="score2">0</span></div>
+
+          <span>
+            <b>J2</b>
+            ESTUDIANTE 2
+          </span>
+
+          <strong>
+            ⭐ <i id="score2">0</i>
+          </strong>
+
         </header>
+
       </div>
+
     </section>
 
+
+    <!-- ===================================== -->
     <!-- PANEL CENTRAL -->
-    <section class="center-panel" aria-label="Información de la ronda">
-      <div class="center-row center-row-inverted">
-        <button class="settings-button settings-blue" data-open-settings>⚙ AJUSTES</button>
-        <div class="timer-chip timer-blue">TIEMPO <strong id="time2">10</strong></div>
-        <div class="round-text round-blue">RONDA <strong id="round2">0 / 10</strong></div>
+    <!-- ===================================== -->
+
+    <section
+      class="center-panel"
+      aria-label="Información de la partida"
+    >
+
+      <!-- Información para el estudiante 2 -->
+
+      <div class="center-line inverted">
+
+        <button
+          type="button"
+          class="settings"
+          data-menu
+        >
+          ☰ MENÚ
+        </button>
+
+        <span>
+          TIEMPO
+          <b id="time2">10</b>
+        </span>
+
+        <span>
+          RONDA
+          <b id="round2">0 / 10</b>
+        </span>
+
       </div>
 
-      <div class="center-divider"></div>
-      <p id="centerMessage" class="center-message">Configura la partida para comenzar</p>
-      <div class="center-divider"></div>
+      <p id="message">
+        ¡Math Battle!
+      </p>
 
-      <div class="center-row">
-        <div class="round-text round-pink">RONDA <strong id="round1">0 / 10</strong></div>
-        <div class="timer-chip timer-pink">TIEMPO <strong id="time1">10</strong></div>
-        <button class="settings-button settings-gold" data-open-settings>⚙ AJUSTES</button>
+      <!-- Información para el estudiante 1 -->
+
+      <div class="center-line">
+
+        <span>
+          RONDA
+          <b id="round1">0 / 10</b>
+        </span>
+
+        <span>
+          TIEMPO
+          <b id="time1">10</b>
+        </span>
+
+        <button
+          type="button"
+          class="settings"
+          data-menu
+        >
+          ☰ MENÚ
+        </button>
+
       </div>
+
     </section>
 
-    <!-- JUGADOR 1 -->
-    <section class="player-zone player-one" aria-label="Zona del estudiante 1">
+
+    <!-- ===================================== -->
+    <!-- ZONA DEL ESTUDIANTE 1 -->
+    <!-- ===================================== -->
+
+    <section
+      class="player-zone player-one"
+      aria-label="Zona del estudiante 1"
+    >
+
       <div class="player-content">
+
         <header class="player-header">
-          <div class="player-name">
-            <span class="player-badge">J1</span>
-            <span>ESTUDIANTE 1</span>
-          </div>
-          <div class="score"><span>⭐</span><span id="score1">0</span></div>
+
+          <span>
+            <b>J1</b>
+            ESTUDIANTE 1
+          </span>
+
+          <strong>
+            ⭐ <i id="score1">0</i>
+          </strong>
+
         </header>
 
-        <div class="operation-block">
-          <span class="operation-label">Operación</span>
-          <div id="operation1" class="operation">7 × 8 = ?</div>
+        <div class="operation-box">
+
+          <small>OPERACIÓN</small>
+
+          <div id="operation1" class="operation">
+            ? + ? = ?
+          </div>
+
         </div>
 
-        <div id="answers1" class="answers-grid" aria-label="Respuestas del estudiante 1"></div>
-        <p id="status1" class="player-status">Esperando la batalla...</p>
+        <div
+          id="answers1"
+          class="answers"
+          aria-label="Respuestas del estudiante 1"
+        ></div>
+
+        <p id="status1" class="status">
+          Esperando...
+        </p>
+
       </div>
+
     </section>
+
   </main>
 
-  <!-- CONFIGURACIÓN -->
-  <dialog id="setupDialog" class="game-dialog">
-    <form id="setupForm" class="dialog-card">
-      <div class="dialog-icon">⚡</div>
-      <h1>Math Battle</h1>
-      <p>¿Cuántas preguntas tendrá la partida?</p>
 
-      <fieldset class="question-options">
-        <legend class="sr-only">Cantidad de preguntas</legend>
-        <label><input type="radio" name="questions" value="5"><span>5</span></label>
-        <label><input type="radio" name="questions" value="10" checked><span>10</span></label>
-        <label><input type="radio" name="questions" value="15"><span>15</span></label>
-        <label><input type="radio" name="questions" value="20"><span>20</span></label>
+  <!-- ===================================== -->
+  <!-- PANTALLA DE BIENVENIDA -->
+  <!-- ===================================== -->
+
+  <dialog id="welcomeDialog" class="modal">
+
+    <div class="card welcome-card">
+
+      <div class="logo">🎮</div>
+
+      <h1>⚡ MATH BATTLE ⚡</h1>
+
+      <p>
+        ¡Hola, pequeños matemáticos! Prepárense
+        para una divertida aventura de números.
+      </p>
+
+      <ul>
+        <li>🎯 Escoge la respuesta correcta</li>
+        <li>⭐ Gana puntos por cada acierto</li>
+        <li>🚀 Responde rápido para ganar más puntos</li>
+      </ul>
+
+      <button
+        type="button"
+        id="goOptions"
+        class="primary"
+      >
+        🎮 ¡VAMOS A JUGAR!
+      </button>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- ===================================== -->
+  <!-- MENÚ DE OPCIONES -->
+  <!-- ===================================== -->
+
+  <dialog id="optionsDialog" class="modal">
+
+    <form id="optionsForm" class="card">
+
+      <h2>⚙️ ELIGE TU PARTIDA</h2>
+
+      <!-- Selección de operaciones -->
+
+      <fieldset>
+
+        <legend>
+          ¿Qué operaciones quieren practicar?
+        </legend>
+
+        <div class="choice-grid operations">
+
+          <label>
+
+            <input
+              type="radio"
+              name="operation"
+              value="sum"
+            >
+
+            <span>
+              ➕
+              <small>SUMAS</small>
+            </span>
+
+          </label>
+
+          <label>
+
+            <input
+              type="radio"
+              name="operation"
+              value="sub"
+            >
+
+            <span>
+              ➖
+              <small>RESTAS</small>
+            </span>
+
+          </label>
+
+          <label>
+
+            <input
+              type="radio"
+              name="operation"
+              value="mul"
+            >
+
+            <span>
+              ✖️
+              <small>MULTIPLICACIÓN</small>
+            </span>
+
+          </label>
+
+          <label>
+
+            <input
+              type="radio"
+              name="operation"
+              value="div"
+            >
+
+            <span>
+              ➗
+              <small>DIVISIÓN</small>
+            </span>
+
+          </label>
+
+          <label class="wide">
+
+            <input
+              type="radio"
+              name="operation"
+              value="mixed"
+              checked
+            >
+
+            <span>
+              🎲
+              <small>MIXTAS</small>
+            </span>
+
+          </label>
+
+        </div>
+
       </fieldset>
 
-      <p class="scoring-note">Responde rápido: puedes ganar hasta 100 puntos por pregunta.</p>
 
-      <div class="dialog-actions">
-        <button type="button" id="cancelSetup" class="button button-secondary">CANCELAR</button>
-        <button type="submit" class="button button-primary">¡COMENZAR!</button>
-      </div>
+      <!-- Selección de preguntas -->
+
+      <fieldset>
+
+        <legend>
+          ¿Cuántas preguntas quieren jugar?
+        </legend>
+
+        <div class="choice-grid questions">
+
+          <label>
+
+            <input
+              type="radio"
+              name="questions"
+              value="5"
+            >
+
+            <span>5</span>
+
+          </label>
+
+          <label>
+
+            <input
+              type="radio"
+              name="questions"
+              value="10"
+              checked
+            >
+
+            <span>10</span>
+
+          </label>
+
+          <label>
+
+            <input
+              type="radio"
+              name="questions"
+              value="15"
+            >
+
+            <span>15</span>
+
+          </label>
+
+          <label>
+
+            <input
+              type="radio"
+              name="questions"
+              value="20"
+            >
+
+            <span>20</span>
+
+          </label>
+
+        </div>
+
+      </fieldset>
+
+      <p class="note">
+        ⚡ Responde rápido para conseguir más puntos.
+      </p>
+
+      <button
+        type="submit"
+        class="primary"
+      >
+        🚀 ¡INICIAR BATALLA!
+      </button>
+
     </form>
+
   </dialog>
 
-  <!-- RESULTADO FINAL -->
-  <dialog id="finishDialog" class="game-dialog">
-    <div class="dialog-card">
-      <div class="dialog-icon">🏆</div>
-      <h2 id="winnerText">Fin de la partida</h2>
+
+  <!-- ===================================== -->
+  <!-- PANTALLA DE RESULTADOS -->
+  <!-- ===================================== -->
+
+  <dialog id="finishDialog" class="modal">
+
+    <div class="card result-card">
+
+      <div class="trophy">🏆</div>
+
+      <h2 id="winnerText">
+        Fin de la partida
+      </h2>
+
       <p id="finalScore"></p>
-      <button id="playAgain" class="button button-cyan">JUGAR DE NUEVO</button>
+
+      <div class="final-actions">
+
+        <button
+          type="button"
+          id="continueGame"
+          class="primary"
+        >
+          🎮 SEGUIR JUGANDO
+        </button>
+
+        <button
+          type="button"
+          id="backMenu"
+          class="secondary"
+        >
+          ⚙️ VOLVER AL MENÚ
+        </button>
+
+      </div>
+
     </div>
+
   </dialog>
 
+
+  <!-- Conexión con el archivo JavaScript -->
   <script src="game.js"></script>
+
 </body>
+
 </html>
